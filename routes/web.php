@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ use App\Http\Controllers\GalleryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', WelcomeController::class)->name('welcome');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

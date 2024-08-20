@@ -5,14 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
+
 class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() : view
+    public function index()
     {
-        return view('galleries.index');
+        // $galleries = auth()->admin()->galleries;
+        // return view('galleries.index', compact('galleries'));
     }
 
     /**
