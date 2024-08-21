@@ -50,6 +50,7 @@ class EventController extends Controller
         }
     }
 
+    
     /**
      * Display the specified resource.
      */

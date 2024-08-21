@@ -9,8 +9,17 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form method="POST" action="{{ route('events.store') }}" 
-             enctype="multipart/form-data"
+            <form method="POST" action="{{ route('events.store') }}" x-data="{
+                country: null,
+                city: null,
+                cities: [],
+                onCountryChange(event) {
+                    axios.get(`/countries/${event.target.value}`).then(res => {
+                        this.cities = res.data
+                    })
+            
+                }
+            }" enctype="multipart/form-data"
                 class="p-4 bg-white dark:bg-slate-800 rounded-md">
                 @csrf
                 <div class="grid gap-6 mb-6 md:grid-cols-2">

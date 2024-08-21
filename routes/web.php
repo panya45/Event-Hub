@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventShowController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\WelcomeController;
 
@@ -19,6 +20,7 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', WelcomeController::class)->name('welcome');
+Route::get('/e/{id}', EventShowController::class)->name('eventShow');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
