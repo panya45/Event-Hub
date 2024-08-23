@@ -25,6 +25,11 @@ class Event extends Model
         'province_id',
     ];
 
+    protected $casts = [
+        'start_date' => 'date:m/d/Y',
+
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -50,5 +55,8 @@ class Event extends Model
         return $this->hasMany(Attending::class);
     }
 
-
+    public function savedEvents(): HasMany
+    {
+        return $this->hasMany(SavedEvent::class);
+    }
 }

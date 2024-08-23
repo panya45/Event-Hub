@@ -3,8 +3,8 @@
         <h3 class="mb-4 text-2xl font-bold text-indigo-700">{{ $event->title }}</h3>
         <div class="flex space-x-2">
             From:
-            {{-- <span class="mx-2">{{ $event->start_date->format('m/d/Y') }}</span> | <span
-                class="mx-2">{{ $event->end_date->format('m/d/Y') }}</span> --}}
+            <span class="mx-2">{{ $event->start_date->format('m/d/Y') }}</span> | <span
+                {{-- class="mx-2">{{ $event->end_date->format('m/d/Y') }}</span> --}}
         </div>
     </div>
     <div class="mb-16 flex flex-wrap">
@@ -21,9 +21,9 @@
                 </div>
                 @auth
                     <div class="flex space-x-2 p-4" x-data="{
-                        {{-- eventLike: @js($like),
+                        eventLike: @js($like),
                         savedEvent: @js($savedEvent),
-                        attending: @js($attending), --}}
+                        attending: @js($attending),
                         onHandleLike() {
                             axios.post(`/events-like/{{ $event->id }}`).then(res => {
                                 this.eventLike = res.data
@@ -91,11 +91,14 @@
         </div>
 
         <div class="w-full shrink-0 grow-0 lg:w-6/12 lg:pl-6 bg-slate-50 rounded-md p-2">
+            <h3 class="mb-4 text-2xl font-bold">{{ $event->title }}</h3>
             <p class="mb-6 text-sm text-yellow-600 dark:text-neutral-400">
-                Start: <time>{{ $event->start_time }}</time>
+
+                Start: <u>{{ $event->toArray()['start_date'] }} </u> at
+                <time>{{ $event->start_time }}</time>
             </p>
             <p class="mb-6 mt-4 text-neutral-500 dark:text-neutral-300">
-                {{ $event->description }}
+                {{ $event->description }}  
             </p>
             <div class="flex justify-end">
                 <div class="flex flex-col">
@@ -118,19 +121,19 @@
             @auth
                 <div
                     class="container d-flex justify-content-center align-items-center w-50 mt-6 bg-slate-200 p-4 rounded-md">
-                    {{-- <div class="">
-                        <form action="{{ route('events.comments', $event->id) }}" class="flex justify-between space-x-2"
-                            method="POST">
+                    <div class="">
+                        {{-- <form action="{{ route('events.comments', $event->id) }}" class="flex justify-between space-x-2"
+                            method="POST"> --}}
                             @csrf
                             <input type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                name="content" id="content" placeholder="Comment">
+                                name="comment" id="comment" placeholder="Comment">
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 Post
                             </button>
                         </form>
-                    </div> --}}
+                    </div>
                     <div class="w-full">
                         @foreach ($event->comments()->latest()->get() as $comment)
                             <div class="w-full p-4 duration-500">

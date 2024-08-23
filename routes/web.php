@@ -3,11 +3,16 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\AttendingSystemController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventShowController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\LikeSystemController;
+use App\Http\Controllers\SavedSystemController;
 use App\Http\Controllers\WelcomeController;
-
+use App\Http\Controllers\LikedEventController;
+use App\Http\Controllers\SavedEventController;
+use App\Http\Controllers\AttendingEventController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +38,15 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/events', EventController::class);
     Route::resource('/galleries', GalleryController::class);
+
+    Route::get('/liked-events', LikedEventController::class)->name('likedEvents');
+    Route::get('/saved-events', SavedEventController::class)->name('savedEvents');
+    Route::get('/attending-events', AttendingEventController::class)->name('attendingEvents');
+
+    Route::post('/events-like/{id}',LikeSystemController::class)->name('events.like');
+    Route::post('/events-saved/{id}',SavedSystemController::class)->name('events.saved');
+    Route::post('/events-attending/{id}', AttendingSystemController::class)->name('events.attending');
+
 });
 
 require __DIR__.'/auth.php';
