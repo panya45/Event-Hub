@@ -13,6 +13,9 @@ use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\LikedEventController;
 use App\Http\Controllers\SavedEventController;
 use App\Http\Controllers\AttendingEventController;
+use App\Http\Controllers\StoreCommentController;
+use App\Http\Controllers\DeleteCommentController;
+use App\Http\Controllers\EventIndexController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +28,7 @@ use App\Http\Controllers\AttendingEventController;
 */
 
 Route::get('/', WelcomeController::class)->name('welcome');
+Route::get('/e', EventIndexController::class)->name('eventIndex');
 Route::get('/e/{id}', EventShowController::class)->name('eventShow');
 
 Route::get('/dashboard', function () {
@@ -37,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/events', EventController::class);
-    Route::resource('/galleries', GalleryController::class);
+
 
     Route::get('/liked-events', LikedEventController::class)->name('likedEvents');
     Route::get('/saved-events', SavedEventController::class)->name('savedEvents');
@@ -47,6 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/events-saved/{id}',SavedSystemController::class)->name('events.saved');
     Route::post('/events-attending/{id}', AttendingSystemController::class)->name('events.attending');
 
+    Route::post('/events/{id}/comments', StoreCommentController::class)->name('events.comments');
+    Route::delete('/events/{id}/comments/{comment}', DeleteCommentController::class)->name('events.comments.destroy');
 });
 
 require __DIR__.'/auth.php';
