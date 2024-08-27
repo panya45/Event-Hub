@@ -17,7 +17,7 @@ class Admin extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $gurad = 'admin';
+    protected $guard = 'admin';
     protected $fillable = [
         'name',
         'email',
@@ -43,4 +43,5 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    
 }

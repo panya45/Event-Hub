@@ -14,11 +14,18 @@ use Illuminate\Support\Str;
 
 class EventController extends Controller 
 {
+    public function __construct()
+    {
+        // Middleware ที่ตรวจสอบว่าเฉพาะผู้ใช้ที่เป็น Admin เท่านั้นที่สามารถเข้าถึงได้
+        $this->middleware('auth:admin');
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index()
     {
+        
         $events = Event::with('province')->get();
         return view('events.index', compact(('events')));
     }
@@ -28,6 +35,7 @@ class EventController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin-only');
         $provinces = Province::all();
         return view('events.create', compact('provinces'));
     }
@@ -37,6 +45,7 @@ class EventController extends Controller
      */
     public function store(CreateEventRequest $request): RedirectResponse
     {
+        $this->authorize('admin-only');
         if($request->hasFile('image')){
             $data = $request->validated();
             $data ['image'] = Storage::putFile('events', $request->file('image'));
@@ -50,20 +59,12 @@ class EventController extends Controller
         }
     }
 
-    
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Event $event): view
     {
+        $this->authorize('admin-only');
         $provinces = Province::all();
         return view('events.edit', compact('provinces','event'));
     }
@@ -73,6 +74,7 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event): RedirectResponse
     {
+        $this->authorize('admin-only');
         $data = $request->validated();
         if ($request->hasFile('image')) {
             Storage::delete($event->image);
@@ -89,6 +91,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event): RedirectResponse
     {
+        $this->authorize('admin-only');
         Storage::delete($event->image);
         $event->delete();
         return to_route('events.index');

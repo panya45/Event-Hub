@@ -18,10 +18,12 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+
     public function login()
     {
         return view('admin.login');
     }
+
     public function login_submit(Request $request)
     {
         // dd($request->all());
@@ -40,7 +42,7 @@ class AdminController extends Controller
         if (Auth::guard('admin')->attempt($data)) {
             return redirect()->route('admin_dashboard')->with('success', 'Loign Succsessfull');
         } else {
-            return redirect()->route('admin_login')->with('error', 'Invalid Credentials');
+            return redirect()->route('admin_login')->withErrors(['error' => 'Invalid Credentials']);
         }
     }
     public function logout()
@@ -62,7 +64,7 @@ class AdminController extends Controller
 
         $admin_data = Admin::where('email', $request->email)->first();
         if (!$admin_data) {
-            return redirect()->back()->with('error', 'Email not found');
+            return redirect()->back()->withErrors(['error' => 'Email not found']);
         }
 
         $token = hash('sha256', time());

@@ -58,9 +58,12 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 /* Admin */
-Route::middleware('admin')->prefix('admin')->group(function () {
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
+    Route::resource('events', EventController::class);
 });
+
+    Route::resource('events', EventController::class);
 
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])->name('admin_login');
