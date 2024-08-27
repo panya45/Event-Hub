@@ -44,4 +44,8 @@ class Admin extends Authenticatable
         'password' => 'hashed',
     ];
     
+    public function isAdmin()
+    {
+        return true; // หรือ logic จริงสำหรับการตรวจสอบว่าเป็น admin หรือไม่
+    }
 }

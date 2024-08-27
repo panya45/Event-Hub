@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class EventPolicy
@@ -11,7 +12,8 @@ class EventPolicy
 
     public function adminOnly(Admin $admin)
     {
-        // ตรวจสอบว่าผู้ใช้นั้นเป็น admin หรือไม่
+        // เช็คว่าผู้ใช้นั้นเป็น admin หรือไม่
         return $admin->isAdmin();
     }
+
 }

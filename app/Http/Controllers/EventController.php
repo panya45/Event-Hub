@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\CreateEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use Illuminate\Http\Request;
@@ -45,7 +46,7 @@ class EventController extends Controller
      */
     public function store(CreateEventRequest $request): RedirectResponse
     {
-        $this->authorize('admin-only');
+
         if($request->hasFile('image')){
             $data = $request->validated();
             $data ['image'] = Storage::putFile('events', $request->file('image'));
