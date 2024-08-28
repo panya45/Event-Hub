@@ -59,6 +59,7 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
     Route::resource('events', EventController::class);
+    Route::get('/e', EventIndexController::class)->name('eventIndex');
 });
 
 

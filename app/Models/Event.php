@@ -60,4 +60,9 @@ class Event extends Model
     {
         return $this->hasMany(SavedEvent::class);
     }
+
+    public function admin()
+    {
+        return $this->belongsTo(Admin::class);
+    }
 }

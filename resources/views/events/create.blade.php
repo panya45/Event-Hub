@@ -9,17 +9,8 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <form method="POST" action="{{ route('events.store') }}" x-data="{
-                country: null,
-                city: null,
-                cities: [],
-                onCountryChange(event) {
-                    axios.get(`/countries/${event.target.value}`).then(res => {
-                        this.cities = res.data
-                    })
-            
-                }
-            }" enctype="multipart/form-data"
+            <form method="POST" action="{{ route('events.store') }}" 
+            " enctype="multipart/form-data"
                 class="p-4 bg-white dark:bg-slate-800 rounded-md">
                 @csrf
                 <div class="grid gap-6 mb-6 md:grid-cols-2">
@@ -37,11 +28,11 @@
                         <label for="province_id"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an
                             option</label>
-                        <select id="province_id" x-model="province" x-on:change="onCountryChange" name="province_id"
+                        <select id="province_id" name="province_id"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option>Choose a province</option>
                             @foreach ($provinces as $province)
-                                <option :value="{{ $province->id }}">{{ $province->name }}</option>
+                                <option value="{{ $province->id }}">{{ $province->name }}</option>
                             @endforeach
                         </select>
                         @error('province_id')

@@ -1,8 +1,8 @@
-<x-main-layout>
+<x-admin-layout>
     <!-- component -->
-    <section class="bg-white">
+    <section class="dark:bg-gray-900">
         <div class="container px-6 py-10 mx-auto">
-            <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl">All Events</h1>
+            <h1 class="text-3xl font-semibold text-white capitalize lg:text-4xl">All Events</h1>
 
             <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
                 @foreach ($events as $event)
@@ -16,8 +16,8 @@
                                 {{ $event->title }}
                             </a>
 
-                            <span class="text-sm text-white bg-indigo-400 rounded-md p-2 ">{{ $event->province->name}}</span>
-                            <span class="text-sm text-white  rounded-md p-2 ">On: {{ $event->start_date}}</span>
+                            <span class="text-sm text-black bg-indigo-400 rounded-md p-2 ">{{ $event->province->name}}</span>
+                            <span class="text-sm text-black  rounded-md p-2 ">On: {{ $event->start_date}}</span>
                             <span class="flex flex-wrap space-x-2"></span>
                         </div>
                     </div>
@@ -26,4 +26,4 @@
             {{ $events->links() }}
         </div>
     </section>
-</x-main-layout>
+</x-admin-layout>
