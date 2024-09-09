@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\AttendingSystemController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\EventShowController;
-use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\LikeSystemController;
 use App\Http\Controllers\SavedSystemController;
 use App\Http\Controllers\WelcomeController;
@@ -59,6 +59,7 @@ require __DIR__.'/auth.php';
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin_dashboard');
     Route::resource('events', EventController::class);
+    Route::resource('users', UserController::class);
     Route::get('/e', EventIndexController::class)->name('eventIndex');
 });
 

@@ -1,6 +1,6 @@
 <x-admin-layout>
     <!-- component -->
-    <section class="dark:bg-gray-900">
+    <section class="bg-white">
         <div class="container px-6 py-10 mx-auto">
             <h1 class="text-3xl font-semibold text-white capitalize lg:text-4xl">All Events</h1>
 

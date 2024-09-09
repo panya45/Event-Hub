@@ -16,8 +16,11 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('events.index')" :active="request()->routeIs('events.index')">
-                        {{ __('Events') }}
+                        {{ __('Events') }}  
                     </x-nav-link> 
+                    {{-- <x-nav-link :href="route('admin.usersIndex')" :active="request()->routeIs('admin.usersIndex')">
+                        {{ __('Users Manage') }}
+                    </x-nav-link>  --}}
                 </div>
             </div>
 

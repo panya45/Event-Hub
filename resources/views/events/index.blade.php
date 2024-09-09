@@ -51,15 +51,13 @@
                                         <div class="flex space-x-2">
                                             @if(Auth::guard('admin')->check())
                                                 <a href="{{ route('events.edit', $event) }}" class="text-green-400 hover:text-green-600">Edit</a>
-                                                <form method="POST" class="text-red-400 hover:text-red-600"
+                                                <form method="POST" class="text-red-400 hover:text-red-600" id="del_form_{{ $event->id }}"
                                                     action="{{ route('events.destroy', $event) }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('events.destroy', $event) }}"
-                                                        onclick="event.preventDefault();
-                                                        this.closest('form').submit();">
+                                                    <button type="button" id="del_btn_{{ $event->id }}" onclick="confirmDelete({{ $event->id }})" class="text-red-400 hover:text-red-600">
                                                         Delete
-                                                    </a>
+                                                    </button>
                                                 </form>
                                             @endif
                                         </div>
@@ -77,4 +75,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmDelete(eventId) {
+            const form = document.getElementById(`del_form_${eventId}`);
+    
+            Swal.fire({
+                title: "Confirm to delete",
+                text: "Are you sure?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Confirm!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+    </script>
 </x-app-layout>
