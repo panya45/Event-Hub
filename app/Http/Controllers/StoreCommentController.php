@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class StoreCommentController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * เพิ่ม Comment
      */
     public function __invoke(Request $request, $id)
     {

@@ -7,7 +7,7 @@ use App\Models\Event;
 class SavedEventController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Save Event ปุ่ม
      */
     public function __invoke()
     {

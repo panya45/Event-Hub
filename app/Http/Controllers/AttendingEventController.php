@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 
+//Controller การกดจอง Event
 class AttendingEventController extends Controller
 {
     /**

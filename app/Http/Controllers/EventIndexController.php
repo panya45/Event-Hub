@@ -7,7 +7,7 @@ use App\Models\Event;
 class EventIndexController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Event โชว์ในหน้า EventIndex.blade.php
      */
     public function __invoke()
     {

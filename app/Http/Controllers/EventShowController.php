@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class EventShowController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * แสดง Event ไปที่หน้า EventShow.blade.php
      */
     public function __invoke($id)
     {

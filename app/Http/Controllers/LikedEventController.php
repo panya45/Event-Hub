@@ -7,7 +7,7 @@ use App\Models\Event;
 class LikedEventController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * กดไลค์ Event
      */
     public function __invoke()
     {
