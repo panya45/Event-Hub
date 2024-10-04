@@ -64,17 +64,43 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Install
-1.composer install ที่โฟลเดอร์โปรเจกต์
-2.cp .env.example .env
-    2.1 เปิดไฟล์ .env เพื่อทำการตั้งค่าการเชื่อมต่อฐานข้อมูล และค่าอื่น ๆ ตามต้องการ (เช่น การเชื่อมต่อกับ MySQL)
-3.php artisan key:generate
-4.ติดตั้ง laravel Breeze 
-    4.1 composer require laravel/breeze --dev
-    4.2 php artisan breeze:install
-    4.3 php artisan breeze:install react
-    4.4 npm install
-        npm run dev
-5. รันคำสั่งเพื่อสร้างตารางในฐานข้อมูลตาม migrations: php artisan migrate
-    5.1 มีการตั้งค่า seed ข้อมูลด้วย ก็สามารถรัน:php artisan db:seed
-6.
+# Install.
+
+1.ติดตั้ง Dependencies ของ Laravel ให้เข้าไปที่โฟลเดอร์โปรเจกต์และรันคำสั่ง:
+
+    composer install
+
+2.ตั้งค่าไฟล์ .env.
+
+    cp .env.example .env
+
+ 2.1 เปิดไฟล์ .env เพื่อทำการตั้งค่าการเชื่อมต่อฐานข้อมูล และค่าอื่น ๆ ตามต้องการ (เช่น การเชื่อมต่อกับ MySQL).
+    
+3.Generate Application Key รันคำสั่งนี้เพื่อสร้าง application key สำหรับ Laravel:
+
+    php artisan key:generate
+
+4.ติดตั้ง laravel Breeze.
+
+    composer require laravel/breeze --dev
+    
+    php artisan breeze:install
+    
+    php artisan breeze:install react
+    
+    npm install
+    
+    npm run dev
+        
+5. รันคำสั่งเพื่อสร้างตารางในฐานข้อมูลตาม migrations.
+   
+       php artisan migrate
+   
+    5.1 มีการตั้งค่า seed ข้อมูลด้วย ก็สามารถรัน.
+   
+       php artisan db:seed
+   
+7. เวลาให้ run ต้อง
+
+       npm run dev
+       php artisanserve
